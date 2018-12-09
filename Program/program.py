@@ -192,7 +192,8 @@ def multiple_choice():
 def run_program(selection):
     """The following is like a switch_case statment, depending on the
     selection from the user in option_selecetion it will run one of the
-    following as a function"""
+    following as a function. Make sure the dictionary below and
+    PROGRAMS match for their selection"""
     switch_case = {
     1: multiple_choice,
     2: exit
