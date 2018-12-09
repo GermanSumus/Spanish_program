@@ -203,6 +203,7 @@ def option_selection(list_of_programs=PROGRAMS):
         if selection.lower() == 'exit':
             exit()
         selection = int(selection)
+        # The following will cause a index error
         list_of_programs[selection-1]
         if selection == 0:
             raise IndexError
