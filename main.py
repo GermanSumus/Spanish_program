@@ -1,5 +1,5 @@
 from clear_screen import clear_screen
-from multiple_choice import multiple_choice
+from menu_options.multiple_choice import multiple_choice
 
 clear_screen()
 

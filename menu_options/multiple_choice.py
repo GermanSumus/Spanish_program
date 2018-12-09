@@ -1,6 +1,6 @@
 from csv_to_list import csv_to_list
 from clear_screen import clear_screen
-from questions import ask_question
+from qna.questions import ask_question
 from random_stuff import rand_row
 from how_difficult import find_difficulty
 

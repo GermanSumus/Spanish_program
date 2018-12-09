@@ -1,4 +1,4 @@
-from answers import ask_answer
+from qna.answers import ask_answer
 from random_stuff import randomize_choices
 from clear_screen import clear_screen
 
