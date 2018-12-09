@@ -189,6 +189,9 @@ def multiple_choice():
 
 
 def run_program(selection):
+    """The following is like a switch_case statment, depending on the
+    selection from the user in option_selecetion it will run one of the
+    following as a function"""
     switch_case = {
     1: multiple_choice,
     2: exit
@@ -198,20 +201,24 @@ def run_program(selection):
 
 
 def option_selection(list_of_programs=PROGRAMS):
+    """Collects selection from user input and sanitize their input"""
     selection = input('\nChoose an option from the list: ')
     try:
         if selection.lower() == 'exit':
             exit()
         selection = int(selection)
-        # The following will cause a index error
+        # The following will cause a index error if selection out of
+        # range in list_of_programs
         list_of_programs[selection-1]
         if selection == 0:
             raise IndexError
         run_program(selection)
+
     except ValueError:
         clear_screen()
         print("PLEASE USE NUMBERS TO MAKE SELECTION.")
         show_menu(MENU)
+
     except IndexError:
         clear_screen()
         print('THAT OPTION IS NOT IN THE LIST.')
@@ -220,11 +227,16 @@ def option_selection(list_of_programs=PROGRAMS):
 
 
 def show_menu(menu):
+    """Shows the created menu from make_menu, to reuse send MENU as a
+    paramater"""
     print(menu)
     option_selection()
 
 
 def make_menu(list_of_programs=PROGRAMS):
+    """This will create the menu that we can reuse and show with the 
+    function show_menu over and over again. Makes it once, but shows it 
+    several times."""
     global MENU
     clear_screen()
     menu_str = "\nLANGUAGE LEARNING APP\n(type 'exit' to end a program)\n"
