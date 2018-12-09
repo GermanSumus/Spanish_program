@@ -6,6 +6,7 @@ MENU = ''
 TOTAL_ANSWERED = 0
 KNOWN_WORDS_LOCATION = 'known_words.dictionary'
 RUNNING = True
+# Program calling happens in the function run_program
 PROGRAMS = ['Multiple Choice', 'Exit']
 
 def clear_screen():
