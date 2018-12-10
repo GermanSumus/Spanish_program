@@ -190,14 +190,39 @@ def multiple_choice():
 
 def refresher():
     clear_screen()
-    while True:
-        known_words_difficulty_dict = read_from_file(KNOWN_WORDS_LOCATION)
-        know_words_translation_lists = find_translation(known_words_difficulty_dict)
+    words_list = csv_to_list('100_words.csv')
+    difficulty_dict = read_from_file(KNOWN_WORDS_LOCATION)
+    translation_lists = find_translation(difficulty_dict, words_list)
 
-def find_translation(word_list_dict):
-    # im here
-    pass
+def find_translation(words_dict, csv):
 
+    def dict2set(dictionary):
+        """Make a dictionary to a set"""
+        known_words_set = set()
+        for key, value in dictionary.items():
+            for v in value:
+                known_words_set.add(v)
+        return known_words_set
+
+    def translate_to_dict(word_set, word_list):
+        english = []
+        spanish = []
+        for word in word_set:
+            for lists in word_list:
+                if word in lists:
+                    english.append(lists[4])
+                    spanish.append(word)
+        return dict(zip(spanish,english))
+
+    def dict2list(dictionary):
+        list_of_pairs = []
+        for key, value in dictionary.items():
+            temp = [key, value]
+            list_of_pairs.append(temp)
+        return list_of_pairs
+
+    translation_pairs = dict2list(translate_to_dict(dict2set(words_dict), csv))
+    return translation_pairs
 
 def run_program(selection):
     """The following is like a switch_case statment, depending on the
@@ -260,29 +285,3 @@ def make_menu(list_of_programs=PROGRAMS):
         option_number += 1
     MENU = menu_str
     show_menu(MENU)
-
-	# if selection.lower() == 'exit':
-	# 	exit()
-
-	# elif int(selection) in range(1, 5):
-	# 	selection = int(selection)
-
-	# 	if selection == 1:
-	# 		multiple_choice()
-
-	# 	elif selection == 2:
-	# 		# fill_in_blank()
-	# 		clear_screen()
-	# 		print("Fill-in the blank mode is coming soon!")
-
-	# 	elif selection == 3:
-	# 		# change_language()
-	# 		clear_screen()
-	# 		print("Multiple language options are coming soon!")
-	# 	elif selection == 4:
-	# 		# other()s
-	# 		clear_screen()
-	# 		print("Other features are coming soon!")
-
-	# else:
-	# 	print("Sorry, try again.")
