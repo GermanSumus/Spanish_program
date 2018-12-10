@@ -7,7 +7,7 @@ TOTAL_ANSWERED = 0
 KNOWN_WORDS_LOCATION = 'known_words.dictionary'
 RUNNING = True
 # Program calling happens in the function run_program
-PROGRAMS = ['Multiple Choice', 'Exit']
+PROGRAMS = ['Multiple Choice', 'Refresher', 'Exit']
 
 def clear_screen():
     """Clears screen"""
@@ -42,11 +42,11 @@ def check_validity(response, choices, answer):
     if index in range(4):
         response = choices[index]
         correctness = check_correctness(answer, response)
-        
+
         return correctness
     else:
         print('Answer not valid. Enter 1, 2, 3 or 4.\n')
-    
+
         return False
 
 
@@ -80,7 +80,7 @@ def randomize_choices(choices):
 
     while len(rand_set) != len(choices):
         target = random.randrange(len(choices))
-        
+
         rand_set.add(choices[target])
 
     return list(rand_set)
@@ -91,7 +91,7 @@ def rand_row(word_list, question=True, used_words=set()):
        answer and random spanish words for multiple choices
        depending on if question is True"""
     done = False
-    
+
     while not done:
         random_row = random.randrange(100)
         row = word_list[random_row]
@@ -103,7 +103,7 @@ def rand_row(word_list, question=True, used_words=set()):
                 used_words.add(word)
 
                 done = True
-                
+
                 return word, answer
             else:
                 continue
@@ -118,7 +118,7 @@ def ask_question(word, choices, answer):
     """Prints out question prompt"""
 
     print(f'Translate: {word}')
-    
+
     choices = randomize_choices(choices)
     option = 1
 
@@ -139,7 +139,6 @@ def read_from_file(file_path):
 
 def save_to_file(dictionary, file_path):
 	write_file = open(file_path, 'w')
-	
 	write_file.write(str(dictionary))
 	write_file.close
 
@@ -157,7 +156,7 @@ def find_difficulty(word):
                 clear_screen()
 
                 known_words = read_from_file(KNOWN_WORDS_LOCATION)
-                
+
                 known_words[difficulty].append(word)
 
                 save_to_file(known_words, KNOWN_WORDS_LOCATION)
@@ -189,6 +188,17 @@ def multiple_choice():
 		find_difficulty(word)
 
 
+def refresher():
+    clear_screen()
+    while True:
+        known_words_difficulty_dict = read_from_file(KNOWN_WORDS_LOCATION)
+        know_words_translation_lists = find_translation(known_words_difficulty_dict)
+
+def find_translation(word_list_dict):
+    # im here
+    pass
+
+
 def run_program(selection):
     """The following is like a switch_case statment, depending on the
     selection from the user in option_selecetion it will run one of the
@@ -196,7 +206,8 @@ def run_program(selection):
     PROGRAMS match for their selection"""
     switch_case = {
     1: multiple_choice,
-    2: exit
+    2: refresher,
+    3: exit
     }
     func = switch_case.get(selection)
     func()
