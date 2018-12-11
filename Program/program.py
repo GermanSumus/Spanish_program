@@ -48,16 +48,18 @@ def check_validity(response, choices, answer):
         index = int(response) - 1
         if index < 0:
             raise IndexError
-        response = choices[index]
-        correctness = check_correctness(answer, response)
-
-        return correctness
 
     except ValueError:
         print('PLEASE USE NUMBERS TO MAKE SELECTION cv.')
 
     except IndexError:
         print('THAT OPTION IS NOT IN THE LIST cv.')
+
+    else:
+        response = choices[index]
+        correctness = check_correctness(answer, response)
+
+        return correctness
 
 def check_correctness(answer, response):
     """Check if answer is correct or not"""
