@@ -9,6 +9,7 @@ RUNNING = True
 # Program calling happens in the function run_program
 PROGRAMS = ['Multiple Choice', 'Refresher', 'Exit']
 
+
 def clear_screen():
     """Clears screen"""
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -64,6 +65,7 @@ def check_correctness(answer, response):
         print('Sorry try again.\n')
 
         return False
+
 
 def end_program():
     global MENU
@@ -131,16 +133,16 @@ def ask_question(word, choices, answer):
 
 
 def read_from_file(file_path):
-	read_file = open(file_path, 'r').read()
-	dictionary = eval(read_file)
+    read_file = open(file_path, 'r').read()
+    dictionary = eval(read_file)
 
-	return dictionary
+    return dictionary
 
 
 def save_to_file(dictionary, file_path):
-	write_file = open(file_path, 'w')
-	write_file.write(str(dictionary))
-	write_file.close
+    write_file = open(file_path, 'w')
+    write_file.write(str(dictionary))
+    write_file.close
 
 
 def find_difficulty(word):
@@ -165,27 +167,28 @@ def find_difficulty(word):
             difficulty = 0
 
 
-def multiple_choice():
-	clear_screen()
+def multiple_choice(IS_CSV=True):
+    clear_screen()
+    if IS_CSV:
+        csv_file = '100_words.csv'
+        word_list = csv_to_list(csv_file)
 
-	while True:
-		csv_file = '100_words.csv'
-		word_list = csv_to_list(csv_file)
+    while True:
 
-		choices = set()
+        choices = set()
 
-		word, answer = rand_row(word_list)
-		choices.add(answer)
+        word, answer = rand_row(word_list)
+        choices.add(answer)
 
-		while len(choices) <= 3:
-			choices.add(rand_row(word_list, question=False))
+        while len(choices) <= 3:
+            choices.add(rand_row(word_list, question=False))
 
-		correct = False
+        correct = False
 
-		while not correct:
-			correct = ask_question(word, choices, answer)
+        while not correct:
+            correct = ask_question(word, choices, answer)
 
-		find_difficulty(word)
+        find_difficulty(word)
 
 
 def refresher():
@@ -213,7 +216,7 @@ def find_translation(words_dict, all_words):
                 if word in lists:
                     english.append(lists[4])
                     spanish.append(word)
-        return dict(zip(spanish,english))
+        return dict(zip(spanish, english))
 
     def dict2list(dictionary):
         list_of_pairs = []
@@ -233,11 +236,7 @@ def run_program(selection):
     selection from the user in option_selecetion it will run one of the
     following as a function. Make sure the dictionary below and
     PROGRAMS match for their selection"""
-    switch_case = {
-    1: multiple_choice,
-    2: refresher,
-    3: exit
-    }
+    switch_case = {1: multiple_choice, 2: refresher, 3: exit}
     func = switch_case.get(selection)
     func()
 
@@ -265,7 +264,6 @@ def option_selection(list_of_programs=PROGRAMS):
         clear_screen()
         print('THAT OPTION IS NOT IN THE LIST.')
         show_menu(MENU)
-
 
 
 def show_menu(menu):
