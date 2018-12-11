@@ -22,6 +22,13 @@ def csv_to_list(csv_file):
         return list(reader)
 
 
+def end_program():
+    global MENU
+    clear_screen()
+    print(f'You got {TOTAL_ANSWERED} questions right!')
+    show_menu(MENU)
+
+
 def ask_answer(answer, choices):
     """Prints answer promt and returns user input as a boolean"""
     response = input('\nChoose 1 - 4 and press Enter: > ')
@@ -37,19 +44,20 @@ def ask_answer(answer, choices):
 def check_validity(response, choices, answer):
     """Check if response is valid"""
     clear_screen()
-
-    index = int(response) - 1
-
-    if index in range(4):
+    try:
+        index = int(response) - 1
+        if index < 0:
+            raise IndexError
         response = choices[index]
         correctness = check_correctness(answer, response)
 
         return correctness
-    else:
-        print('Answer not valid. Enter 1, 2, 3 or 4.\n')
 
-        return False
+    except ValueError:
+        print('PLEASE USE NUMBERS TO MAKE SELECTION cv.')
 
+    except IndexError:
+        print('THAT OPTION IS NOT IN THE LIST cv.')
 
 def check_correctness(answer, response):
     """Check if answer is correct or not"""
@@ -65,14 +73,6 @@ def check_correctness(answer, response):
         print('Sorry try again.\n')
 
         return False
-
-
-def end_program():
-    global MENU
-    clear_screen()
-
-    print(f'You got {TOTAL_ANSWERED} questions right!')
-    show_menu(MENU)
 
 
 def randomize_choices(choices):
@@ -118,7 +118,7 @@ def rand_row(word_list, question=True, used_words=set()):
 
 def ask_question(word, choices, answer):
     """Prints out question prompt"""
-
+    print('MULTIPLE CHOICE\n')
     print(f'Translate: {word}')
 
     choices = randomize_choices(choices)
@@ -196,6 +196,7 @@ def refresher():
     words_list = csv_to_list('100_words.csv')
     difficulty_dict = read_from_file(KNOWN_WORDS_LOCATION)
     translation_lists = find_translation(difficulty_dict, words_list)
+    print('This is the refresher program running')
 
 
 def find_translation(words_dict, all_words):
