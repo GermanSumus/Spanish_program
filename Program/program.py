@@ -194,7 +194,8 @@ def refresher():
     difficulty_dict = read_from_file(KNOWN_WORDS_LOCATION)
     translation_lists = find_translation(difficulty_dict, words_list)
 
-def find_translation(words_dict, csv):
+
+def find_translation(words_dict, all_words):
 
     def dict2set(dictionary):
         """Make a dictionary to a set"""
@@ -221,8 +222,11 @@ def find_translation(words_dict, csv):
             list_of_pairs.append(temp)
         return list_of_pairs
 
-    translation_pairs = dict2list(translate_to_dict(dict2set(words_dict), csv))
+    known_words = dict2set(words_dict)
+    translated_dict = translate_to_dict(known_words, all_words)
+    translation_pairs = dict2list(translated_dict)
     return translation_pairs
+
 
 def run_program(selection):
     """The following is like a switch_case statment, depending on the
@@ -272,8 +276,8 @@ def show_menu(menu):
 
 
 def make_menu(list_of_programs=PROGRAMS):
-    """This will create the menu that we can reuse and show with the 
-    function show_menu over and over again. Makes it once, but shows it 
+    """This will create the menu that we can reuse and show with the
+    function show_menu over and over again. Makes it once, but shows it
     several times."""
     global MENU
     clear_screen()
