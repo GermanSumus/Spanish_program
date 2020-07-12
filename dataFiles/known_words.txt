@@ -1,0 +1,1 @@
+{"23": ["as\u00ed"], "5": ["el", "se", "que", "los"], "4": ["despu\u00e9s", "un", "tanto"], "3": ["otros", "aunque", "seg\u00fan", "eso", "as\u00ed"], "1": ["donde"], "7": ["lo"], "2": ["sin", "o"], "103": ["se"], "9": ["una"]}

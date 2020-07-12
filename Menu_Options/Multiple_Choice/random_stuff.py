@@ -7,18 +7,18 @@ def randomize_choices(choices):
 
     while len(rand_set) != len(choices):
         target = random.randrange(len(choices))
-        
+
         rand_set.add(choices[target])
 
     return list(rand_set)
 
 
 def rand_row(word_list, question=True, used_words=set()):
-    """Returns a random row for both a question with
-       answer and random spanish words for multiple choices
-       depending on if question is True"""
+    """Returns a random row for a new question with an
+       answer if question=True and random spanish words for multiple choices
+       if question=False"""
     done = False
-    
+
     while not done:
         random_row = random.randrange(100)
         row = word_list[random_row]
@@ -30,7 +30,7 @@ def rand_row(word_list, question=True, used_words=set()):
                 used_words.add(word)
 
                 done = True
-                
+
                 return word, answer
             else:
                 continue
