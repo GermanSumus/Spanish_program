@@ -9,10 +9,6 @@ Clone repository
 Open in terminal
 Run 'python main.py'
 
-### Prerequisites
-
-Csv files needs to be in the same folder for program to run succesfully.
-
 ### Installing
 
 Extract repo if downloaded as zip
