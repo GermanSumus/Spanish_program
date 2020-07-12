@@ -11,8 +11,7 @@ def difficulty(word, difficulty):
     try:
         with open(KNOWN_WORDS_LOCATION, 'r') as file:
             known_words = json.loads(file.read())
-    except json.decoder.JSONDecodeError:
-        print('\nFile is empty. Creating a new learning file.\n')
+    except FileNotFoundError:
         known_words = dict()
     if str(difficulty) in known_words:
         known_words[str(difficulty)].append(word)
