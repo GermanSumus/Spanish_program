@@ -5,7 +5,7 @@ from time import sleep
 
 def main_menu():
     clear_screen()
-    print("\nLANGUAGE LEARNING APP")
+    print("LANGUAGE LEARNING APP")
     print("(type 'exit' to end program)\n")
     print("\t1) Multiple Choice")
     print("\t2) Fill-In the Blank")
