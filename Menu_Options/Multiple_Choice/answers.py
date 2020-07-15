@@ -19,7 +19,6 @@ def ask_answer(answer, choices):
 
     return validity
 
-
 def check_validity(user_response, choices, answer):
     """Check if user_response is valid"""
     clear_screen()
@@ -35,7 +34,6 @@ def check_validity(user_response, choices, answer):
         print('Answer not valid. Enter 1, 2, 3 or 4.\n')
 
         return False
-
 
 def check_correctness(answer, user_response):
     """Check if answer is correct or not"""

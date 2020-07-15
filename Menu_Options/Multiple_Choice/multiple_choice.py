@@ -24,21 +24,19 @@ def csv_to_list(csv_file):
         reader = csv.reader(file)
         return list(reader)
 
-def multiple_choice():
+def multiple_choice(file):
     clear_screen()
 
     while True:
-        csv_file = 'dataFiles/100_words.csv'
-
+        csv_file = file
         word_list = csv_to_list(csv_file)
-
         choices = set()
 
-        word, answer = rand_row(word_list)
+        word, answer = rand_row(word_list,length=len(word_list))
         choices.add(answer)
 
         while len(choices) <= 3:
-            choices.add(rand_row(word_list, question=False))
+            choices.add(rand_row(word_list, question=False,length=len(word_list)))
 
         correct = False
         _ = time()

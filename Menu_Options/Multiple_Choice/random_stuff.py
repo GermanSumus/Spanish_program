@@ -13,25 +13,25 @@ def randomize_choices(choices):
     return list(rand_set)
 
 
-def rand_row(word_list, question=True, used_words=set()):
+def rand_row(word_list, length, question=True, used_words=set()):
     """Returns a random row for a new question with an
        answer if question=True and random spanish words for multiple choices
        if question=False"""
     done = False
 
     while not done:
-        random_row = random.randrange(100)
+        random_row = random.randrange(length)
         row = word_list[random_row]
-        word = row[1]
-        answer = row[4]
+        spanish = row[0]
+        answer = row[1]
 
         if question:
-            if word not in used_words:
-                used_words.add(word)
+            if spanish not in used_words:
+                used_words.add(spanish)
 
                 done = True
 
-                return word, answer
+                return spanish, answer
             else:
                 continue
 
