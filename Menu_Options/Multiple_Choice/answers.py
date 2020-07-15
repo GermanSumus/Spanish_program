@@ -1,7 +1,6 @@
 from clear_screen import clear_screen
 from time import sleep
 
-total_answered = 0
 
 def ask_answer(answer, choices):
     """Prints answer promt and returns user input as a boolean"""
@@ -37,11 +36,8 @@ def check_validity(user_response, choices, answer):
 
 def check_correctness(answer, user_response):
     """Check if answer is correct or not"""
-    global total_answered
 
     if user_response == answer:
-        total_answered += 1
-
         print('Nice work! You got it!\n')
 
         return True
