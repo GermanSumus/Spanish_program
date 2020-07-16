@@ -20,7 +20,7 @@ def main_menu():
             selection = int(selection)
     except ValueError:
         # No number entered in, unable to find number in selection
-        print('That\'s not a valid entry, please try again.')
+        print('Value Error That\'s not a valid entry, please try again.')
         sleep(1)
         main_menu()
 
@@ -48,5 +48,5 @@ def main_menu():
     else:
         print('That\'s not a valid entry, please try again.')
         sleep(1)
-        main_menu
+        main_menu()
 main_menu()
