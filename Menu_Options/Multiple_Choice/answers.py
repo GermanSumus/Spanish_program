@@ -2,12 +2,12 @@ from clear_screen import clear_screen
 from time import sleep
 
 
-def ask_answer(answer, choices):
+def ask_answer(answer, choices, total):
     """Prints answer promt and returns user input as a boolean"""
     user_response = input('\nChoose 1 - 4 and press Enter: > ')
 
     if user_response.lower() == 'exit':
-        end_program()
+        end_program(total)
     try:
         user_response = int(user_response)
     except ValueError:
@@ -46,9 +46,9 @@ def check_correctness(answer, user_response):
 
         return False
 
-def end_program():
+def end_program(total):
     clear_screen()
 
-    print(f'You got {total_answered} questions right!')
+    print(f'You got {total} questions right!')
 
     exit()

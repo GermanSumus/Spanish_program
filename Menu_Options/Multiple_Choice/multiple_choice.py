@@ -49,7 +49,7 @@ def multiple_choice(file):
 
         _ = time()
         while not correct:
-            correct = ask_question(word, choices, answer)
+            correct = ask_question(word, choices, answer, total=TOTAL)
         __ = time()
         TOTAL += 1
 
