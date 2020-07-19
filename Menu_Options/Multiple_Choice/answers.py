@@ -11,8 +11,8 @@ def ask_answer(answer, choices, total):
     try:
         user_response = int(user_response)
     except ValueError:
-        clear_screen()
-        print('Answer not valid. Enter 1, 2, 3 or 4.\n')
+        print('Numbers Please.')
+        sleep(1)
         return False
     validity = check_validity(user_response, choices, answer)
 

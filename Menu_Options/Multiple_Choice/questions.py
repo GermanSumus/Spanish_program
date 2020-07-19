@@ -5,7 +5,7 @@ from clear_screen import clear_screen
 
 def ask_question(word, choices, answer, total):
     """Prints out question prompt"""
-
+    clear_screen()
     print(f'Translate: {word}')
 
     choices = randomize_choices(choices)

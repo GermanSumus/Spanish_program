@@ -6,12 +6,11 @@ from time import sleep
 def validate(func):
 # Returns a valid integer response from user and calls func until then
     user_response = input("\nEnter 1 - 4 to choose >  ")
+    if user_response.lower() == 'exit':
+        print("Exiting Program")
+        exit()
     try:
-        if user_response.lower() == 'exit':
-            print("Exiting Program")
-            exit()
-        else:
-            return int(user_response)
+        return int(user_response)
     except ValueError:
         # No number entered in, unable to find number in selection
         print('Numbers Please.')
