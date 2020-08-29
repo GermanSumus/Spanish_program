@@ -4,7 +4,7 @@ from time import sleep
 
 def ask_answer(answer, choices, total):
     """Prints answer promt and returns user input as a boolean"""
-    user_response = input('\nChoose 1 - 4 and press Enter: > ')
+    user_response = input('Choose 1 - 4 and press Enter: > ')
 
     if user_response.lower() == 'exit':
         end_program(total)
@@ -20,7 +20,6 @@ def ask_answer(answer, choices, total):
 
 def check_validity(user_response, choices, answer):
     """Check if user_response is valid"""
-    clear_screen()
 
     index = int(user_response) - 1
 
@@ -30,20 +29,20 @@ def check_validity(user_response, choices, answer):
 
         return correctness
     else:
-        print('Answer not valid. Enter 1, 2, 3 or 4.\n')
-
+        print('Answer not valid. Enter 1, 2, 3 or 4.')
+        sleep(1)
         return False
 
 def check_correctness(answer, user_response):
     """Check if answer is correct or not"""
 
     if user_response == answer:
-        print('Nice work! You got it!\n')
-
+        print('Nice work! You got it!')
+        sleep(1)
         return True
     else:
-        print('Sorry try again.\n')
-
+        print('Sorry try again.')
+        sleep(1)
         return False
 
 def end_program(total):

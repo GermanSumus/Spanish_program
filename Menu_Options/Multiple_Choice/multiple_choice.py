@@ -2,6 +2,7 @@ from clear_screen import clear_screen
 from Menu_Options.Multiple_Choice.questions import ask_question
 from Menu_Options.Multiple_Choice.random_stuff import rand_word
 from time import time
+from time import sleep
 import csv
 import json
 
@@ -30,28 +31,28 @@ def end_program():
     print(f'You got {TOTAL} questions right!')
 
     exit()
-def multiple_choice(file):
+def multiple_choice(csv_file):
     clear_screen()
     global TOTAL
     while True:
-        csv_file = file
         word_list = csv_to_list(csv_file)
         choices = set()
         if len(word_list)==TOTAL:
             end_program()
-        word, answer = rand_word(word_list,length=len(word_list))
-        choices.add(answer)
+        spanish_word, english_answer = rand_word(word_list,length=len(word_list))
+        choices.add(english_answer)
 
         while len(choices) <= 3:
-            choices.add(rand_word(word_list, answer=False,length=len(word_list)))
+            choices.add(rand_word(word_list, spanish=False,length=len(word_list)))
+
 
         correct = False
 
         _ = time()
         while not correct:
-            correct = ask_question(word, choices, answer, total=TOTAL)
+            correct = ask_question(spanish_word, choices, english_answer, total=TOTAL)
         __ = time()
         TOTAL += 1
 
         seconds = int(__-_)
-        difficulty(word, seconds)
+        difficulty(spanish_word, seconds)
