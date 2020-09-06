@@ -15,6 +15,8 @@ def difficulty(word, difficulty):
             known_words = json.loads(file.read())
     except FileNotFoundError:
         known_words = dict()
+    except json.decoder.JSONDecodeError:
+        known_words = dict()
     if str(difficulty) in known_words:
         known_words[str(difficulty)].append(word)
     else:
